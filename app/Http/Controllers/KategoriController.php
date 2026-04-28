@@ -12,7 +12,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategoris = Kategori::all();
+        $kategoris = Kategori::orderBy('updated_at', 'desc')->get();
         return view('kategori.index', compact('kategoris'));
     }
 
@@ -41,14 +41,6 @@ class KategoriController extends Controller
 
         Kategori::create($request->all());
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Kategori $kategori)
-    {
-        //
     }
 
     /**

@@ -12,7 +12,7 @@ class BukuController extends Controller
      */
     public function index()
     {
-        $bukus = Buku::with('kategori')->get();
+        $bukus = Buku::with('kategori')->orderBy('updated_at', 'desc')->get();
         return view('buku.index', compact('bukus'));
     }
 
@@ -30,37 +30,27 @@ class BukuController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'judul' => 'required|string|max:255',
-        'penulis' => 'required|string|max:255',
-        'penerbit' => 'required|string|max:255',
-        'tahun_terbit' => 'required|integer',
-        'kategori_id' => 'required|exists:kategoris,id',
-    ]);
-
-    Buku::create([
-        'judul' => $request->judul,
-        'penulis' => $request->penulis,
-        'penerbit' => $request->penerbit,
-        'tahun_terbit' => $request->tahun_terbit,
-        'kategori_id' => $request->kategori_id,
-    ]);
-
-    return redirect()->route('buku.index')->with('success', 'Buku berhasil ditambahkan.');
-}
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Buku $buku)
     {
-        //
-    }
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'penulis' => 'required|string|max:255',
+            'penerbit' => 'required|string|max:255',
+            'tahun_terbit' => 'required|integer',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'stok' => 'required|integer|min:1',
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+        Buku::create([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
+            'kategori_id' => $request->kategori_id,
+            'stok' => $request->stok,
+        ]);
+        return redirect()->route('buku.index')->with('success', 'Buku berhasil ditambahkan.');
+    }
+    
     public function edit(Buku $buku)
     {
         $bukus = Buku::FindOrFail($buku->id);
@@ -80,7 +70,9 @@ class BukuController extends Controller
             'penerbit' => 'required|string|max:255',
             'tahun_terbit' => 'required|integer',
             'kategori_id' => 'required|exists:kategoris,id',
+            'stok' => 'required|integer|min:1',
         ]);
+        $bukus->update($request->all());
         return redirect()->route('buku.index')->with('success', 'Buku berhasil diperbarui.');
     }
 

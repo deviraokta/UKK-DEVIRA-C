@@ -18,33 +18,6 @@ class PeminjamController extends Controller
         return view('peminjam.index', compact('peminjams'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $peminjam = User::findOrFail($id);
@@ -57,13 +30,13 @@ class PeminjamController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nama' => 'required',
+            'name' => 'required',
             'username' => 'required|unique:users,username,' . $id,
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|min:6',
         ],
         [
-            'nama.required' => 'Nama wajib diisi.',
+            'name.required' => 'Nama wajib diisi.',
             'username.required' => 'Username wajib diisi.',
             'username.unique' => 'Username sudah ada.',
             'email.required' => 'Email wajib diisi.',
@@ -72,7 +45,7 @@ class PeminjamController extends Controller
             'password.min' => 'Password minimal 6 karakter.',
         ]);
 
-        $data = $request->only('nama', 'username', 'email');
+        $data = $request->only('name', 'username', 'email');
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         }
@@ -83,14 +56,11 @@ class PeminjamController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $peminjam = User::findOrFail($id);
-        $peminjam->delete();
-        return redirect()->route('peminjam.index')
-            ->with('success', 'Peminjam berhasil dihapus.');
+        public function destroy(string $id)
+        {
+            $peminjam = User::findOrFail($id);
+            $peminjam->delete();
+            return redirect()->route('peminjam.index')
+                ->with('success', 'Peminjam berhasil dihapus.');
     }
 }

@@ -34,11 +34,15 @@
             </div>
 
             <div class="form-group">
-    <label>Kategori</label>
-    <select name="kategori_id" class="form-control" required>
-        <option value="">Pilih Kategori</option>
-        @foreach($kategoris as $kategori)
-            <option value="{{ $kategori->id }}">
+                <label>Stok</label>
+                <input type="number" name="stok" class="form-control" placeholder="masukan stok minimal 1" required>
+            </div>
+            <div class="form-group">
+                <label>Kategori</label>
+                    <select name="kategori_id" class="form-control" required>
+                    <option value="">Pilih Kategori</option>
+                @foreach($kategoris as $kategori)
+                    <option value="{{ $kategori->id }}">
                 {{ $kategori->nama_kategori }}
             </option>
         @endforeach

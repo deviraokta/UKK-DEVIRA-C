@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-   Edit Kategori
+Edit Kategori
 @endsection
 @section('content')
 
@@ -38,7 +38,7 @@
                 <input type="text" name="nama_kategori" class="form-control" value="{{ $kategori->nama_kategori }}">
             </div>
 
-            <button type="submit" class="btn btn-success">Update</button>
+            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Update</button>
         </form>
 
     </div>

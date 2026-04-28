@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function loginForm()
     {
         return view('auth.login');
@@ -63,8 +60,9 @@ class AuthController extends Controller
             return back()->with('error', 'Login gagal. Pastikan username dan password benar.');
         }
 
-            public function logout()
-        {        Auth::logout();
-        return redirect()->route('login')->with('success', 'Anda berhasil logout.');    
+        public function logout()
+        {       
+            Auth::logout();
+            return redirect()->route('login')->with('success', 'Anda berhasil logout.');    
     }
 }

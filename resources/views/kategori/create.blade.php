@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
+Tambah Kategori
 @endsection
 
 @section('content')

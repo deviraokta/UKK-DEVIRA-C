@@ -7,59 +7,23 @@ use Illuminate\Http\Request;
 
 class UlasanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function store(Request $request, $id)
     {
-        //
-    }
+        $cek =Ulasan::where('user_id', auth()->id())
+        ->where('buku_id', $id)
+        ->exists();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        if ($cek) {
+            return back()->with('error', 'Sebelumya kamu sudah memberi ulasan');
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        Ulasan::create([
+            'user_id' => auth()->id(),
+            'buku_id' => $id,
+            'isi_ulasan' => $request->isi_ulasan,
+            'rating' => $request->rating
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Ulasan $ulasan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Ulasan $ulasan)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Ulasan $ulasan)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Ulasan $ulasan)
-    {
-        //
+        return back()->with('success', 'Ulasan berhasil ditambahkan');
     }
 }

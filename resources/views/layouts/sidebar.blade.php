@@ -4,10 +4,11 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="{{asset('images/user_icon.png')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{auth()->user()->name}}</p>
+          <p class="text-uppercase">{{auth()->user()->name}}</p>
+          <a href=""><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
       
@@ -45,8 +46,13 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="{{route('laporan.peminjaman')}}">
             <i class="fa fa-edit"></i> <span>Laporan</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('setting.index') }}">
+            <i class="fa fa-cog"></i> <span>Pengaturan Denda</span>
           </a>
         </li>
 
@@ -68,18 +74,18 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="{{route('peminjaman.index')}}">
             <i class="fa fa-laptop"></i>
             <span>Peminjaman</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="{{route('laporan.peminjaman')}}">
             <i class="fa fa-edit"></i> <span>Laporan</span>
           </a>
         </li>
 
-      @else
+      @elseif (auth()->user()->role == "peminjam")
         <li>
           <a href="{{ route('peminjam.dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
@@ -93,10 +99,6 @@
           </a>
         </li>
         <li>
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>Koleksi Buku Saya</span>
-          </a>
         </li>
         @endif
         </ul>

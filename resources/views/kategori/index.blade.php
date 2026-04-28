@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
+    Daftar Kategori
 @endsection
 @section('content')
 
@@ -17,15 +18,16 @@
         {{ session('error') }}
     </div>
 @endif
-
+<div class="box box-primary">
+    <div class="box-header with-border">
 <h3 class="box-title text-center text-bold">Daftar Kategori</h3>
-
+    </div>
 <div class="box-body">
     @if (auth()->user()->role == 'admin')
-    <a href="{{ route('kategori.create') }}" class="btn btn-info"><i class="fa fa-plus"></i> Tambah Kategori</a>
+    <a href="{{ route('kategori.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Kategori</a>
 @endif
     <br><br>
-<table class="table table-striped table-bordered">
+<table id="tabelKategori" class="table table-striped table-bordered">
     <thead>
         <tr class="bg-primary text-white">
             <th class="text-center">Nama Kategori</th>
@@ -54,4 +56,6 @@
     </tbody>
 </table>
 </div>
+</div>
 @endsection
+

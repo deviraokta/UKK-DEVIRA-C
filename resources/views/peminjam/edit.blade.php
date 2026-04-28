@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
+    Edit Peminjam
 @endsection
 @section('content')
 
@@ -27,7 +28,7 @@
 
             <div class="form-group">
                 <label>Nama Peminjam</label>
-                <input type="text" name="nama" class="form-control" value="{{old('nama', $peminjam->name) }}">
+                <input type="text" name="name" class="form-control" value="{{old('name', $peminjam->name) }}">
             </div>
             <div class="form-group">
                 <label>Username</label>
@@ -42,7 +43,7 @@
                 <input type="password" name="password" class="form-control" placeholder=" masukan minimal 6">
             </div>
 
-            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Update</button>
+            <button type="submit" class="btn btn-success">Update</button>
         </form>
 
     </div>

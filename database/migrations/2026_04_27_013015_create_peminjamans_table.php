@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal_peminjaman');
             $table->date('tanggal_jatuh_tempo');
             $table->date('tanggal_pengembalian')->nullable();
-            $table->enum('status', ['dipinjam', 'dikembalikan'])->default('dipinjam');   
+            $table->enum('status', ['dipinjam', 'dikembalikan', 'hilang'])->default('dipinjam');   
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('peminjams');
+        Schema::dropIfExists('peminjamans');
     }
 };

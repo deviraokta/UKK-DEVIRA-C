@@ -2,7 +2,6 @@
 
 @section('title')
     Edit Buku
-@endsection
 @section('content')
 <div class="box">
     <div class="box-header">
@@ -45,6 +44,11 @@
             <div class="form-group">
                 <label>Tahun Terbit</label>
                 <input type="number" name="tahun_terbit" class="form-control" value="{{ $buku->tahun_terbit }}">
+            </div>
+
+             <div class="form-group">
+                <label>Stok</label>
+                <input type="number" name="stok" class="form-control" value="{{ $buku->stok }}">
             </div>
 
             <div class="form-group">

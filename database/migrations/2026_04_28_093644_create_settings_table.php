@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('koleksis', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('buku_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
+        Schema::create('settings', function (Blueprint $table) {
+                $table->id();
+                $table->integer('denda_per_hari')->default(1000);
+                $table->integer('denda_hilang')->default(50000);
+                $table->timestamps();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('koleksis');
+        Schema::dropIfExists('settings');
     }
 };

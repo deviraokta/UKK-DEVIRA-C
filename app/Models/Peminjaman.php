@@ -11,9 +11,18 @@ class Peminjaman extends Model
     protected $fillable = [
         'user_id',
         'buku_id',
-        'tanggal_pinjam',
-        'tanggal_kembali',
+        'tanggal_peminjaman',
+        'tanggal_jatuh_tempo',
+        'tanggal_pengembalian',
         'status',
+        'denda_telat',
+        'denda_hilang',
+    ];
+
+    protected $casts = [
+    'tanggal_peminjaman' => 'datetime',
+    'tanggal_jatuh_tempo' => 'datetime',
+    'tanggal_pengembalian' => 'datetime',
     ];
 
     public function buku()
